@@ -1,5 +1,5 @@
 module.exports = function toReadable(number) {
-
+// function toReadable(number) {
     let total;
     let preTotal;
     let arrOfNumbers;
@@ -33,7 +33,10 @@ module.exports = function toReadable(number) {
       arrOfNumbers = String(number).split('');
       firstNumber = Number(arrOfNumbers[0]);
       secondNumber = Number(arrOfNumbers[1]);
-      let thirdNumber = Number(arrOfNumbers[2]);  
+      let thirdNumber = Number(arrOfNumbers[2]);
+      let secondNumberForTrim = isdozen(secondNumber);
+      let dozen = Number(arrOfNumbers[1] + arrOfNumbers[2]);
+      // console.log(dozen);
 
       if ( secondNumber === 0 ) {
 
@@ -41,9 +44,15 @@ module.exports = function toReadable(number) {
 
         total = preTotal.trim();
 
+      } else if ( secondNumber === 1 ) {
+
+        preTotal = isunitsHundreds(firstNumber) + " hundred" + " " + isteens(dozen);
+
+        total = preTotal.trim();
+
       } else {
 
-        preTotal = isunitsHundreds(firstNumber).trim() + " hundred" + " " + isdozen(secondNumber).trim() + " " + isunitsHundreds(thirdNumber).trim();
+        preTotal = isunitsHundreds(firstNumber).trim() + " hundred" + " " + secondNumberForTrim.trim() + " " + isunitsHundreds(thirdNumber).trim();
         total = preTotal.trim();
       }
 
@@ -114,7 +123,7 @@ function isteens(num1) {
             teens = 'fourteen';
           break;
           case 15:
-            teens = 'fiveteen';
+            teens = 'fifteen';
           break;
           case 16:
             teens = 'sixteen';
@@ -166,5 +175,5 @@ function isdozen(num2) {
 return dozen;
 }
 
-// toReadable(128);
- 
+// toReadable(214);
+
